@@ -1,0 +1,9 @@
+{
+  "name": "dir1",
+  "nodes": [
+    {
+      "name": "file1",
+      "size": 120
+    }
+  ]
+}

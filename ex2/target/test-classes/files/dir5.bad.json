@@ -1,0 +1,14 @@
+{
+  "name": "dir1",
+  "nodes": [
+    {
+      "name": "dir2",
+      "nodes": [ ]
+    },
+    {
+      "name": "a node...",
+      "size": 120,
+      "nodes": [ ]
+    }
+  ]
+}

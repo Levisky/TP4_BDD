@@ -1,0 +1,10 @@
+{
+  "name": "dir1",
+  "nodes": [
+    {
+      "name": "dir2",
+      "nodes": [ ],
+      "an unexpected": "... property !"
+    }
+  ]
+}

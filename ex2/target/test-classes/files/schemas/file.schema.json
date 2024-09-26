@@ -1,0 +1,19 @@
+{
+    "$id": "http://masterinfo.univ-lr.fr/bda/fs/file.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "allOf": [
+      {
+        "$ref": "node.schema.json"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "integer"
+          }
+        },
+        "required": ["size"]
+      }
+    ]
+  }
+  

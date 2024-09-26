@@ -1,5 +1,6 @@
 package bda;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.schema.JsonSchema;
@@ -8,12 +9,16 @@ import com.networknt.schema.SchemaLocation;
 import com.networknt.schema.SpecVersion;
 import com.networknt.schema.ValidationMessage;
 import junit.framework.TestCase;
+
+import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
+
+
 
 
 public class JsonSchemasValidationTest extends TestCase {
@@ -24,7 +29,16 @@ public class JsonSchemasValidationTest extends TestCase {
   final static JsonSchemaFactory jsonSchemaFactory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V202012, builder ->
       // This creates a mapping from $id which starts with 'source' to the retrieval URI classpath:schema/
       builder.schemaMappers(schemaMappers -> schemaMappers.mapPrefix("http://masterinfo.univ-lr.fr/bda/fs", "classpath:schemas/"))
+      
+  
   );
+
+  private ObjectMapper mapper;
+
+ 
+
+
+  
 
   public void testFile1() {
     TestCase.assertTrue(validation("http://masterinfo.univ-lr.fr/bda/fs/file.schema.json", "file1.good.json"));
@@ -63,6 +77,7 @@ public class JsonSchemasValidationTest extends TestCase {
   }
 
   public void testDir5() {
+
     TestCase.assertFalse(validation("http://masterinfo.univ-lr.fr/bda/fs/directory.schema.json", "dir5.bad.json"));
   }
 
@@ -77,6 +92,8 @@ public class JsonSchemasValidationTest extends TestCase {
     InputStream jsonInputStream = this.getClass().getResourceAsStream("/files/" + jsonFileName);
     // Initialize Jackson's ObjectMapper
     ObjectMapper mapper = new ObjectMapper();
+    mapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
+   
 
     JsonNode jsonNode = null;
     try {

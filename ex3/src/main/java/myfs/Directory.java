@@ -11,7 +11,9 @@ public class Directory extends Node {
     private List<Node> nodes;
 
    
-    public Directory(@JsonProperty(value = "name", required = true) String name) {
+    public Directory(
+            @JsonProperty(value = "name", required = true) String name,
+            @JsonProperty(value = "nodes") List<Node> nodes) {  
         super(name);
         this.nodes = new ArrayList<>();
     }
